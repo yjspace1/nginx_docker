@@ -5,7 +5,7 @@ commandTests:
     args: ["-v"]
 
 fileExistenceTests:
-- name: 'Root'
-  path: '/etc/nginx/policy/prepnode*'
+- name: 'policy file comfirm'
+  path: '/etc/nginx/policy/*'
   shouldExist: true
   
