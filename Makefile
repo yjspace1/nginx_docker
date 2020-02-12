@@ -1,4 +1,4 @@
-REPO_HUB = looploy
+REPO_HUB = yjlim2
 NAME = nginx
 VERSION = 1.17.1
 TAGNAME = $(VERSION)
@@ -64,8 +64,8 @@ changeconfig:
 		 docker rm "$$CONTAINER_ID"
 
 build:  make_build_args
-		sed -i $(SED_OPTION) "s/$(REPO_HUB)\/$(NAME).*/$(REPO_HUB)\/$(NAME):$(VERSION)/g" docker-compose_grpc.yml	
-		sed -i $(SED_OPTION) "s/$(REPO_HUB)\/$(NAME).*/$(REPO_HUB)\/$(NAME):$(VERSION)/g" docker-compose.yml
+		#sed -i $(SED_OPTION) "s/$(REPO_HUB)\/$(NAME).*/$(REPO_HUB)\/$(NAME):$(VERSION)/g" docker-compose_grpc.yml	
+		#sed -i $(SED_OPTION) "s/$(REPO_HUB)\/$(NAME).*/$(REPO_HUB)\/$(NAME):$(VERSION)/g" docker-compose.yml
 		docker build --no-cache --rm=true  $(shell cat BUILD_ARGS)  -t $(REPO_HUB)/$(NAME):$(TAGNAME) .
 
 push:

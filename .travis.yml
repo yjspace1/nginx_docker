@@ -14,7 +14,7 @@ before_install:
 
 install:
   - make build
-  - make test
+#  - make test
 #  - make run
 
 script:
@@ -26,7 +26,7 @@ script:
   - sleep 30
   - docker exec -it prep curl -s localhost:9000/api/v1/status/peer
  # - docker exec -it nginx nginx -t -c /etc/nginx/nginx.conf
-  - sh -x ./check/nginx_config.sh
+#  - sh -x ./check/nginx_config.sh
 
 
 after_success: echo " >>>>> NGINX TEST Success <<<<< "
