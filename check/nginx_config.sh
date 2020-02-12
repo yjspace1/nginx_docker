@@ -8,7 +8,7 @@ docker exec -it nginx nginx -t
 if [ $? -eq 0 ]; then
   echo " >>>>>>>>>> NGINX Config Cheeck OK <<<<<<<<<< "
   docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
-  docker push ${REPO_HUB}/${NAME}:${TAGNAME}-dev
+  docker push ${REPO_HUB}/${NAME}:${VERSION}-dev
 
 else
   echo " !!!!!!!!!! NGINX Config Check Fail !!!!!!!!!! "
