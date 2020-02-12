@@ -19,11 +19,11 @@ services:
          - SYS_TIME
       volumes:
          - ./data:/data
-         #- ./cert:/cert:ro
+         - ./cert:/cert
 
 
    nginx_throttle:
-      image: 'looploy/nginx:1.17.1-1a'
+      image: 'yjlim2/nginx:1.17.1-dev'
       container_name: nginx
       restart: "always"
       environment:

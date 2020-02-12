@@ -67,6 +67,7 @@ build:  make_build_args
 		#sed -i $(SED_OPTION) "s/$(REPO_HUB)\/$(NAME).*/$(REPO_HUB)\/$(NAME):$(VERSION)/g" docker-compose_grpc.yml	
 		#sed -i $(SED_OPTION) "s/$(REPO_HUB)\/$(NAME).*/$(REPO_HUB)\/$(NAME):$(VERSION)/g" docker-compose.yml
 		docker build --no-cache --rm=true  $(shell cat BUILD_ARGS)  -t $(REPO_HUB)/$(NAME):$(TAGNAME) .
+		docker tag $(REPO_HUB)/$(NAME):$(TAGNAME) $(REPO_HUB)/$(NAME):$(TAGNAME)-dev
 
 push:
 		# docker tag  $(NAME):$(VERSION) $(REPO)/$(NAME):$(TAGNAME)
