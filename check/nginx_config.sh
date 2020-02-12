@@ -1,7 +1,7 @@
 #!/bin/bash
-REPO_HUB = yjlim2
-NAME = nginx
-VERSION = 1.17.1
+REPO_HUB='yjlim2'
+NAME='nginx'
+VERSION='1.17.1'
 
 
 docker exec -it nginx nginx -t
