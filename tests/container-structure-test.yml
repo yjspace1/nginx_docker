@@ -6,6 +6,6 @@ commandTests:
 
 fileExistenceTests:
 - name: 'policy file comfirm'
-  path: '/etc/nginx/policy/*'
+  path: '/etc/nginx/policy/prepnode_ipscan_diff.sh'
   shouldExist: true
   
