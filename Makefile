@@ -18,8 +18,6 @@ endif
 
 all: build docs
 
-test: make_build_args
-	echo $(VERSION)
 
 define colorecho
       @tput setaf 6
@@ -68,6 +66,9 @@ build:  make_build_args
 		#sed -i $(SED_OPTION) "s/$(REPO_HUB)\/$(NAME).*/$(REPO_HUB)\/$(NAME):$(VERSION)/g" docker-compose.yml
 		docker build --no-cache --rm=true  $(shell cat BUILD_ARGS)  -t $(REPO_HUB)/$(NAME):$(TAGNAME) .
 		docker tag $(REPO_HUB)/$(NAME):$(TAGNAME) $(REPO_HUB)/$(NAME):$(TAGNAME)-dev
+
+test:
+		container-structure-test test --driver docker --image $(REPO_HUB)/$(NAME):$(TAGNAME)-dev --config ./tests/container-structure-test.yml
 
 push:
 		# docker tag  $(NAME):$(VERSION) $(REPO)/$(NAME):$(TAGNAME)

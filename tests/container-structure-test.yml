@@ -1,0 +1,11 @@
+schemaVersion: '2.0.0'
+commandTests:
+  - name: "nginx"
+    command: "nginx"
+    args: ["-v"]
+
+fileExistenceTests:
+- name: 'Root'
+  path: '/etc/nginx/policy/prepnode*'
+  shouldExist: true
+  

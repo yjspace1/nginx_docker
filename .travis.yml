@@ -14,7 +14,7 @@ before_install:
 
 install:
   - make build
-#  - make test
+  - make test
 #  - make run
 
 script:
@@ -29,5 +29,5 @@ script:
   - sh -x ./check/nginx_config.sh
 
 
-after_success: echo " >>>>> NGINX TEST Success <<<<< "
+after_success: echo " #################### [END] NGINX TEST Success #################### "
 after_failure: docker logs nginx

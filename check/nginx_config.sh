@@ -1,13 +1,10 @@
 #!/bin/bash
 
-RED='\033[0;31m'
-GREEN="\033[1;32m"
-NOCOLOR="\033[0m"
 
 docker exec -it nginx nginx -t
 if [ $? -eq 0 ]; then
-  echo " ${GREEN} >>>>>>>>>> NGINX Config Cheeck OK <<<<<<<<<< ${NOCOLOR}"
+  echo " >>>>>>>>>> NGINX Config Cheeck OK <<<<<<<<<< "
 
 else
-  echo " ${RED} !!!!!!!!!! NGINX Config Check Fail !!!!!!!!!! ${NOCOLOR}"
+  echo " !!!!!!!!!! NGINX Config Check Fail !!!!!!!!!! "
 fi
