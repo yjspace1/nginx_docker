@@ -5,7 +5,10 @@ commandTests:
     args: ["-v"]
 
 fileExistenceTests:
-- name: 'policy file comfirm'
+- name: 'prepnode list diff script file comfirm'
   path: '/etc/nginx/policy/prepnode_ipscan_diff.sh'
   shouldExist: true
   
+- name: 'prepnode iplist reload script file comfirm'
+  path: '/etc/nginx/policy/prepnode_reload.sh'
+  shouldExist: true
