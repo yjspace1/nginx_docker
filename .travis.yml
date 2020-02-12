@@ -1,0 +1,33 @@
+language: python
+python:
+  - "3.7"
+
+services:
+  - docker
+
+before_install:
+  - curl -k -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x container-structure-test-linux-amd64 && sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
+ # - scversion="latest" # or "v0.4.7", or "latest"
+  -  wget -qO- "https://storage.googleapis.com/shellcheck/shellcheck-latest.linux.x86_64.tar.xz" | tar -xJv
+  -  sudo cp "shellcheck-latest/shellcheck" /usr/local/bin/
+  -  shellcheck --version
+
+install:
+  - make build
+  - make test
+#  - make run
+
+script:
+  - docker images
+  - docker-compose up -d
+  - sleep 50
+  - docker exec -it prep curl -s localhost:9000/api/v1/status/peer 
+  - docker ps -a
+  - sleep 30
+  - docker exec -it prep curl -s localhost:9000/api/v1/status/peer
+ # - docker exec -it nginx nginx -t -c /etc/nginx/nginx.conf
+  - sh -x ./check/nginx_config.sh
+
+
+after_success: echo " >>>>> NGINX TEST Success <<<<< "
+after_failure: docker logs nginx
