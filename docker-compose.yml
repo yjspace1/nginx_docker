@@ -1,7 +1,7 @@
 version: '3'
 services:
    prep:
-      image: 'iconloop/prep-node:1912090356xb1e1fe-dev'
+      image: 'iconloop/prep-node:2001091813x7eba36'
       container_name: prep
       restart: "always"
       environment:
@@ -9,22 +9,22 @@ services:
          ICON_LOG_LEVEL: "DEBUG"
          DEFAULT_PATH: "/data/loopchain"
          LOG_OUTPUT_TYPE: "file"
-         PRIVATE_PATH: "/cert/{==YOUR_KEYSTORE or YOUR_CERTKEY FILENAME==}"
-         PRIVATE_PASSWORD: "{==YOUR_KEY_PASSWORD==}"
+         PRIVATE_PATH: "/cert"
+         #PRIVATE_PASSWORD: "{==YOUR_KEY_PASSWORD==}"
          CERT_PATH: "/cert"
          SERVICE: "zicon"
-         FASTEST_START: "yes"
-         SWITCH_BH_VERSION4: 1587271
+         #FASTEST_START: "yes"
+         IS_AUTOGEN_CERT: "true"
       cap_add:
          - SYS_TIME
       volumes:
          - ./data:/data
-         - ./cert:/cert:ro
+         #- ./cert:/cert:ro
 
 
    nginx_throttle:
       image: 'looploy/nginx:1.17.1-1a'
-      container_name: nginx_throttle
+      container_name: nginx
       restart: "always"
       environment:
          NGINX_LOG_OUTPUT: 'file'
