@@ -12,6 +12,18 @@ events {
 }
 
 http {
+    # rate limit white IP
+    geo $whiteip {
+        default 0;
+        58.234.0.0/25 1;
+        121.128.0.0/26 1;
+        }
+
+   map $whiteip $limit {
+       0 $binary_remote_addr;
+       1 "";
+    }
+
     # General Option
     sendfile    {{ .Env.SENDFILE }};
     server_tokens   {{ .Env.SERVER_TOKENS }};
@@ -53,7 +65,8 @@ http {
 {{ if eq .Env.USE_NGINX_THROTTLE "yes" }}    
     # $binary_remote_addr
     # limit_req_zone $http_true_client_ip zone=by_ip:{{.Env.NGINX_ZONE_MEMORY}} rate={{.Env.NGINX_RATE_LIMIT}};
-    limit_req_zone {{.Env.NGINX_THROTTLE_BY_IP_VAR}} zone=by_ip:{{.Env.NGINX_ZONE_MEMORY}} rate={{.Env.NGINX_RATE_LIMIT}};
+    #limit_req_zone {{.Env.NGINX_THROTTLE_BY_IP_VAR}} zone=by_ip:{{.Env.NGINX_ZONE_MEMORY}} rate={{.Env.NGINX_RATE_LIMIT}};
+    limit_req_zone $limit zone=by_ip:{{.Env.NGINX_ZONE_MEMORY}} rate={{.Env.NGINX_RATE_LIMIT}};
     limit_req_zone $request_uri zone=by_uri:{{.Env.NGINX_ZONE_MEMORY}} rate={{.Env.NGINX_RATE_LIMIT}};
 {{ end }}
 

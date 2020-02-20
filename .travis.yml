@@ -10,7 +10,7 @@ before_install:
  # - scversion="latest" # or "v0.4.7", or "latest"
   -  wget -qO- "https://storage.googleapis.com/shellcheck/shellcheck-latest.linux.x86_64.tar.xz" | tar -xJv
   -  sudo cp "shellcheck-latest/shellcheck" /usr/local/bin/
-  -  shellcheck --version
+ # -  shellcheck --version
 
 install:
   - make build
